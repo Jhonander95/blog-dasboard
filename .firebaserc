@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "blog-dashboard-36e43": {
+      "hosting": {
+        "blog-dashboard": [
+          "blog-dashboard-36e43"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "blog-dashboard-36e43"
+  }
+}

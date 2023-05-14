@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 bg-dark p-5 shadow-effect text-white ">
+      <h2 class="text-center  ">New Categories</h2>
+      <p class="text-center mb-5">
+        You can add ner categories from here ..!
+      </p>
+
+      <form
+        class="form-inline text-center"
+        [formGroup]="form"
+        (ngSubmit)="addCategory(form.value)"
+      >
+
+        <div class="col-md-10">
+          <input
+            type="text"
+            formControlName="category"
+            class="form-group   shadow-effect "
+            placeholder="Add New Categori" >
+        </div>
+
+        <div class="col-md-2">
+          <button class="btn btn-block btn-warning " type="submit" > Add Category </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

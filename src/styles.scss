@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Slackey&display=swap');
+:root {
+  --secondary-color: #026467 !important;
+  --primary-color: #ffc107!important;
+  --color-black: #212121!important;
+  --light-color: #e5f5ea!important;
+  --body-text-color: #596392!important;
+  --navbar-footer-color: #f9f9f9!important;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: var(--body-text-color);
+}
+
+.site-logo {
+  padding: 5px 20px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: var(--color-black);
+}
+
+.nav-link {
+  color: var(--color-black);
+}
+
+.shadow-effect {
+  border: none;
+  box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, .5);
+  border-radius: 10px;
+}
+
+.bg-theme {
+  background-color: var(--primary-color);
+}
