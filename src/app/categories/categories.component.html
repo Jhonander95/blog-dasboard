@@ -17,11 +17,32 @@
             type="text"
             formControlName="category"
             class="form-group   shadow-effect "
-            placeholder="Add New Categori" >
+            placeholder="Add New Categori"
+          >
+          <ng-container
+                *ngFor="
+                  let validation of validationMessages
+                    .category
+                "
+          >
+                <div
+                  class="form-text text-dark bg-theme "
+                  *ngIf="
+                    categoryField?.hasError(validation.type) &&
+                    categoryFieldDirty
+                  "
+                >
+                <h3>{{validation.message}}</h3>
+                </div>
+          </ng-container>
         </div>
 
         <div class="col-md-2">
-          <button class="btn btn-block btn-warning " type="submit" > Add Category </button>
+          <button
+            class="btn btn-block btn-warning "
+            [disabled]="form.invalid"
+            type="submit"
+          > Add Category </button>
         </div>
 
       </form>

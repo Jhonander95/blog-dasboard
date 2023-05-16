@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 /* import { AngularFirestore } from '@angular/fire/firestore'; */
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { UltilsService } from '../services/ultils.service';
 
 @Component({
   selector: 'app-categories',
@@ -12,11 +12,15 @@ import { Observable } from 'rxjs';
 export class CategoriesComponent {
 
   constructor ( private formBuilder: FormBuilder,
-                private db: AngularFirestore) {
-    this.buildForm();
+                private db: AngularFirestore,
+                private utilsServices: UltilsService)
+                {
+                  this.validationMessages = utilsServices.getValidationMessages();
+                  this.buildForm();
   }
 
   form!: FormGroup;
+  validationMessages: any;
 
 
   //declare getters for ech field
@@ -25,9 +29,13 @@ export class CategoriesComponent {
     return this.form?.get('category');
   }
 
+  get categoryFieldDirty() {
+    return this.categoryField?.dirty || this.categoryField?.touched;
+  }
+
   private buildForm() {
     this.form = this.formBuilder.group({
-      category: ['']
+      category: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 
@@ -40,10 +48,19 @@ export class CategoriesComponent {
     }
 
     this.db.collection('categories').add(categoryData).then( docRef => {
-
       console.log(docRef);
+
       this.db.collection('categories').doc(docRef.id).collection('subcategories').add(subCategoryData).then(docRef1 => {
         console.log(docRef1);
+
+        this.db.doc(`categories/${docRef.id}/subcategories/${docRef1.id}`).collection('subSubCategories').add(subCategoryData).then( docRef2 => {
+          console.log('Second level subcatecories saved succesfully');
+        } )
+
+/*         this.db.collection('categories').doc(docRef.id).collection('subcategories').doc(docRef1.id).collection('subSubCategories').add(subCategoryData).then(docRef2 => {
+          console.log('Second level subcatecories saved succesfully');
+        }) */
+
       })
 
     })
