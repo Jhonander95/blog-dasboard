@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-/* import { AngularFirestore } from '@angular/fire/firestore'; */
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UltilsService } from '../services/ultils.service';
+import { CategoriesService } from '../services/categories.service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-categories',
@@ -12,7 +12,7 @@ import { UltilsService } from '../services/ultils.service';
 export class CategoriesComponent {
 
   constructor ( private formBuilder: FormBuilder,
-                private db: AngularFirestore,
+                private categoriesServices: CategoriesService,
                 private utilsServices: UltilsService)
                 {
                   this.validationMessages = utilsServices.getValidationMessages();
@@ -40,10 +40,12 @@ export class CategoriesComponent {
   }
 
   addCategory(form: any) {
-    let categoryData = {
+    let categoryData: Category = {
       category: form
     }
-    let subCategoryData = {
+
+    this.categoriesServices.saveCategories(categoryData);
+   /*  let subCategoryData = {
       subCategory: 'sub category 1'
     }
 
@@ -56,17 +58,16 @@ export class CategoriesComponent {
         this.db.doc(`categories/${docRef.id}/subcategories/${docRef1.id}`).collection('subSubCategories').add(subCategoryData).then( docRef2 => {
           console.log('Second level subcatecories saved succesfully');
         } )
-
-/*         this.db.collection('categories').doc(docRef.id).collection('subcategories').doc(docRef1.id).collection('subSubCategories').add(subCategoryData).then(docRef2 => {
+         this.db.collection('categories').doc(docRef.id).collection('subcategories').doc(docRef1.id).collection('subSubCategories').add(subCategoryData).then(docRef2 => {
           console.log('Second level subcatecories saved succesfully');
-        }) */
+        })
 
       })
 
     })
     .catch(err => { console.log(err);
      } )
-    console.log(form);
+    console.log(form);*/
   }
 
 
