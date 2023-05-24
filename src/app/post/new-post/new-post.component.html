@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h3>Add New Post</h3>
+            <p>
+                You can add your new post here
+            </p>
+        </div>
+    </div>
+
+    <form 
+        class=" "
+        [formGroup]="form"
+        (ngSubmit)="addPost(form.value)"
+    >
+
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <div class="card shadow-effect">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="title"> Title </label>
+                            <input 
+                                type="text" 
+                                id="title" 
+                                formControlName="title"
+                                class="form-control "
+                                (keyup)="onTitleChanges($event)"
+                            >
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="permalink"> Permalink </label>
+                            <input 
+                                type="text" 
+                                id="permalink" 
+                                formControlName="permalink"
+                                class="form-control "
+                                [(ngModel)]="permalink"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="excerpt"> Excerpt </label>
+                            <textarea 
+                                class="form-control"
+                                formControlName="excerpt" 
+                                id="excerpt" 
+                                cols="30" 
+                                rows="10"
+                            ></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-sm-12">
+
+                <div class="form-group">
+                    <label for=""> Please Select a Post Category </label>
+                    <select class="form-control"> 
+                        <option value="" disabled >Please select a categry</option>
+                    </select>
+                </div>
+
+                <div class="form-group ">
+                    <label for=""> Post Image </label>
+                    <input type="file" class="form-control  " >
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row my-4">
+            <div class="col-lg-12">
+                <div class="card shadow-effect">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 text-center mb-5">
+            <button class="btn btn-warning" > Save Post </button>
+            <button class="btn btn-warning ml-2" routerLink="/posts" > Back to Post </button>
+        </div>
+
+    </form>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UltilsService } from '../services/ultils.service';
 import { CategoriesService } from '../services/categories.service';
@@ -9,7 +9,13 @@ import { Category } from '../models/category';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
+
+
+  categories: any = [];
+  editCategory: any = [];
+  formStatus: string = 'Add';
+  categoryId: string = '';
 
   constructor ( private formBuilder: FormBuilder,
                 private categoriesServices: CategoriesService,
@@ -17,6 +23,15 @@ export class CategoriesComponent {
                 {
                   this.validationMessages = utilsServices.getValidationMessages();
                   this.buildForm();
+  }
+
+  ngOnInit(): void {
+    this.categoriesServices.LoadData().subscribe( val => {
+      this.categories = val;
+      console.log(val);
+      
+      console.log(this.categories);
+    })
   }
 
   form!: FormGroup;
@@ -43,31 +58,28 @@ export class CategoriesComponent {
     let categoryData: Category = {
       category: form
     }
-
-    this.categoriesServices.saveCategories(categoryData);
-   /*  let subCategoryData = {
-      subCategory: 'sub category 1'
+    if ( this.formStatus == 'Add' ) {
+      this.categoriesServices.saveCategories(categoryData);
+      this.form.reset();
+    }else if (this.formStatus == 'Edit' ) {
+      this.categoriesServices.updateCategory(categoryData, this.categoryId);
+      this.formStatus = 'Add';
+      this.form.reset();
     }
 
-    this.db.collection('categories').add(categoryData).then( docRef => {
-      console.log(docRef);
+   
+  }
 
-      this.db.collection('categories').doc(docRef.id).collection('subcategories').add(subCategoryData).then(docRef1 => {
-        console.log(docRef1);
+  onEdit(category: any, id: string) {
+    console.log(category);
+    this.editCategory = category;
+    this.formStatus = 'Edit';
+    this.categoryId = id;
+    console.log(this.categoryId);
+  }
 
-        this.db.doc(`categories/${docRef.id}/subcategories/${docRef1.id}`).collection('subSubCategories').add(subCategoryData).then( docRef2 => {
-          console.log('Second level subcatecories saved succesfully');
-        } )
-         this.db.collection('categories').doc(docRef.id).collection('subcategories').doc(docRef1.id).collection('subSubCategories').add(subCategoryData).then(docRef2 => {
-          console.log('Second level subcatecories saved succesfully');
-        })
-
-      })
-
-    })
-    .catch(err => { console.log(err);
-     } )
-    console.log(form);*/
+  onDelete(id: string) {
+    this.categoriesServices.deleteCategory(id);
   }
 
 
