@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { UltilsService } from 'src/app/services/ultils.service';
 
 @Component({
@@ -7,16 +8,21 @@ import { UltilsService } from 'src/app/services/ultils.service';
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.scss']
 })
-export class NewPostComponent {
+export class NewPostComponent implements OnInit {
 
   form!: FormGroup;
   validationMessages: any;
+  imgSrc: any = './assets/placeholder.jpg';
+  seletedImg: any;
+
+  categories: any = [];
 
   permalink: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private utilsServices: UltilsService
+    private utilsServices: UltilsService,
+    private categoriesServices: CategoriesService
   ){
     this.validationMessages = utilsServices.getValidationMessages();
     this.buildForm();
@@ -28,6 +34,17 @@ export class NewPostComponent {
       permalink: ['', [Validators.required] ],
       excerpt: ['', Validators.required ]
     });
+  }
+
+  showPreview($event: any) {
+    const reader = new FileReader();
+    reader.onload = (e) =>{
+      this.imgSrc = e.target?.result;
+      
+    }
+
+    reader.readAsDataURL($event.target.files[0]);
+    this.seletedImg = $event.target.files[0];
   }
 
   addPost(form: any) {
@@ -55,6 +72,14 @@ export class NewPostComponent {
 
   get permalinkFieldDirty() {
     return this.permalinkField?.dirty || this.permalinkField?.touched;
+  }
+
+  ngOnInit(): void {
+   this.categoriesServices.LoadData().subscribe( cat => {
+    this.categories = cat;
+    console.log(this.categories);
+    
+   } );
   }
 
 
