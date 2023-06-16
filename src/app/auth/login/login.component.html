@@ -1,0 +1,77 @@
+<div class="content">
+    <div class="col-lg-6 col-sm-12 mx-auto">
+        <div class="card  shadow-effect">
+            <div class="car-body">
+                <div class="text-center mt-4">
+                    <h3>Login</h3>
+                </div>
+                <form 
+                    [formGroup]="form"
+                    (ngSubmit)="login(form.value)"
+                    class="mt-3"
+                >
+                    <div class="col-md-8 formGroup mx-auto mb-3 ">
+                        <label for="email">Email:  </label>
+                        <input
+                            type="text"
+                            formControlName="email"
+                            class="form-control    "
+                            placeholder="pedropablo@gmail.com"
+                        >
+                        <ng-container
+                            *ngFor="
+                                let validation of validationMessages
+                                .email
+                            "
+                        >
+                            <div
+                                class="form-text text-dark bg-theme "
+                                *ngIf="
+                                    emailField?.hasError(validation.type) &&
+                                    emailFieldDirty
+                                "
+                            >
+                            <h3>{{validation.message}}</h3>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <div class="col-md-8 formGroup mx-auto mb-3 ">
+                        <label for="password"> Password:  </label>
+                        <input
+                            type="password"
+                            formControlName="password"
+                            class="form-control    "
+                            placeholder="******"
+                        >
+                        <ng-container
+                            *ngFor="
+                                let validation of validationMessages
+                                .password
+                            "
+                        >
+                            <div
+                                class="form-text text-dark bg-theme "
+                                *ngIf="
+                                    passwordField?.hasError(validation.type) &&
+                                    passwordFieldDirty
+                                "
+                            >
+                            <h3>{{validation.message}}</h3>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <div class="col-8 mx-auto mb-3">
+                        <button
+                            class="btn btn-block btn-warning "
+                            [disabled]="form.invalid"
+                            type="submit"
+                        >  Login </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

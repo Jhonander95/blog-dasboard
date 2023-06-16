@@ -29,7 +29,15 @@ export class UltilsService {
     ],
     content: [
       { type: 'required', message: 'El contenido es obligatorio' }
-    ]
+    ],
+    email: [
+      { type: 'required', message: 'El email es obligatorio' },
+      { type: 'pattern', message: 'El formato del email es inválido' }
+    ],
+    password: [
+      { type: 'required', message: 'La Contraseña es obligatoria' },
+      { type: 'minlength', message: 'El contraeña debe de tener más de 6 caracteres' }
+    ],
   }
 
   getValidationMessages(): object {
