@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 bg-dark p-5 shadow-effect text-white ">
-      <h2 class="text-center  "> {{formStatus}} Categories</h2>
+      <h2 class="text-center  "> {{formStatus}} Categorias </h2>
       <p class="text-center mb-5">
-        You can {{formStatus}} new categories from here ..!
+        Puedes {{formStatus}}  categorias aquí ..!
       </p>
 
       <form
@@ -17,7 +17,7 @@
             type="text"
             formControlName="category"
             class="form-group   shadow-effect "
-            placeholder="Add New Category"
+            placeholder="Agregar nueva categoria"
             [(ngModel)]="editCategory"
           >
           <ng-container
@@ -43,7 +43,7 @@
             class="btn btn-block btn-warning btn-input-cat "
             [disabled]="form.invalid"
             type="submit"
-          > {{formStatus}} Category </button>
+          > {{formStatus}} Categoria </button>
         </div>
 
       </form>
@@ -61,8 +61,8 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Category</th>
-                <th>Actions</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -78,7 +78,7 @@
                   <button 
                     class="btn bnt-sm btn-danger" 
                     (click)="onDelete(category.id)" 
-                  >Del</button>
+                  >Elim</button>
                 </td>
               </tr>
             </tbody>

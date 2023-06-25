@@ -2,14 +2,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow-effect bg-dark text-white">
-                <h3 class="text-center mt-2" > All Blog Posts</h3>
+                <h3 class="text-center mt-2" > Todos los posts </h3>
                 <p class="text-center ">
-                    From here you can manage your blog posts.
+                    Aquí se podran administrars los posts
                 </p>
 
                 <div class="row mx-auto mb-2">
-                    <button class="btn btn-warning btn-lg" routerLink="/posts/new" > Add new post</button>
-                    <button class="btn btn-warning btn-lg ml-2 "  routerLink="/" > Back to Dashboard</button>
+                    <button class="btn btn-warning btn-lg" routerLink="/posts/new" > Agregar Post Nuevo</button>
+                    <button class="btn btn-warning btn-lg ml-2 "  routerLink="/" > Volver al Dashboard</button>
                 </div>
             </div>
         </div>
@@ -23,12 +23,12 @@
                         <thead>
                             <tr>
                                 <th>No</th> 
-                                <th>Post Image</th>
-                                <th>Title</th>
+                                <th>Imagen</th>
+                                <th>Titulo</th>
                                <!--  <th>Excerpt</th> -->
-                                <th>Category</th>
-                                <th>Date</th>
-                                <th>Actions</th>
+                                <th>Categoria</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
                                 </tr>
                         </thead>
                         <tbody>
@@ -47,18 +47,18 @@
                                     <button 
                                         class="btn bnt-sm btn-danger mr-2" 
                                         (click)="onDelete(post.data.postImgPath, post.id)" 
-                                    >Del</button>
+                                    >Elim</button>
 
                                     <button 
                                         *ngIf="!post.data.isFeatured"
                                         class="btn bnt-sm btn-success mr-2" 
                                         (click)="onFeatured(post.id, true)" 
-                                    >Mark Featured</button>
+                                    >Destacar</button>
                                     <button 
                                         *ngIf="post.data.isFeatured"
                                         class="btn bnt-sm btn-danger" 
                                         (click)="onFeatured(post.id, false)" 
-                                    >Remove Featured</button>
+                                    >Remover destacados</button>
                                 </td>
                             </tr>
                         </tbody>
