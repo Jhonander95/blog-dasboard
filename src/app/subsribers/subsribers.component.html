@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 bg-dark p-5 shadow-effect text-white ">
+        <h2 class="text-center  "> Subscriptores</h2>
+        <p class="text-center mb-5">
+            Eliminar o editar subscriptores.
+        </p>
+        <div class="row mx-auto mb-2">
+            <button class="btn btn-warning btn-lg mx-auto "  routerLink="/" > Back to Dashboard</button>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="row my-5">
+  
+      <div class="col-lg-6 col-sm-12 mx-auto">
+  
+        <div class="card shadow-effect ">
+          <div class="card-body">
+            <table class="table row-border hover">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let subs of subscribers; let i = index" >
+                  <td> {{ i + 1 }}  </td>
+                  <td> {{ subs?.data?.name }} </td>
+                  <td> {{ subs?.data?.email }} </td>
+                  <td>  
+                    <button 
+                      class="btn bnt-sm btn-danger" 
+                      (click)="onDelete(subs?.id)"
+                    >Del</button>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  

@@ -15,7 +15,6 @@ export class CategoriesService {
 
     saveCategories(categoryData: Category){
       this.db.collection('categories').add(categoryData).then( docRef => {
-        console.log(docRef);
         this.toastr.success('Data Insert Successfully!!');
       })
       .catch(err => { console.log(err);
@@ -43,10 +42,8 @@ export class CategoriesService {
     }
 
     deleteCategory(id: string) {
-
       this.db.collection('categories').doc(id).delete().then( docRef => {
         this.toastr.success('Data Deleted Successfully!!');
-        console.log(docRef);
       })
     }
 

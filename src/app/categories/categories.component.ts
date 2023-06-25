@@ -28,9 +28,6 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesServices.LoadData().subscribe( val => {
       this.categories = val;
-      console.log(val);
-      
-      console.log(this.categories);
     })
   }
 
@@ -71,11 +68,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   onEdit(category: any, id: string) {
-    console.log(category);
     this.editCategory = category;
     this.formStatus = 'Edit';
     this.categoryId = id;
-    console.log(this.categoryId);
   }
 
   onDelete(id: string) {

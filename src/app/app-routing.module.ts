@@ -6,6 +6,7 @@ import { AllPostComponent } from './post/all-post/all-post.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { SubsribersComponent } from './subsribers/subsribers.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -13,7 +14,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   { path: 'posts', component: AllPostComponent,  canActivate: [AuthGuard] },
-  { path: 'posts/new', component: NewPostComponent, canActivate: [AuthGuard] }
+  { path: 'posts/new', component: NewPostComponent, canActivate: [AuthGuard] },
+
+  { path: 'subscribers', component: SubsribersComponent, canActivate: [AuthGuard] }
 
 ];
 

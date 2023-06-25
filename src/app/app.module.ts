@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgetComponent } from './auth/forget/forget.component';
+import { SubsribersComponent } from './subsribers/subsribers.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ForgetComponent } from './auth/forget/forget.component';
     AllPostComponent,
     LoginComponent,
     RegisterComponent,
-    ForgetComponent
+    ForgetComponent,
+    SubsribersComponent
   ],
   imports: [
     BrowserModule,
