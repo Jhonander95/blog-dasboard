@@ -16,7 +16,10 @@ const routes: Routes = [
   { path: 'posts', component: AllPostComponent,  canActivate: [AuthGuard] },
   { path: 'posts/new', component: NewPostComponent, canActivate: [AuthGuard] },
 
-  { path: 'subscribers', component: SubsribersComponent, canActivate: [AuthGuard] }
+  { path: 'subscribers', component: SubsribersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'blog', loadChildren: () => import('./blog/blog.module').then(m=>m.BlogModule)
+  }
 
 ];
 

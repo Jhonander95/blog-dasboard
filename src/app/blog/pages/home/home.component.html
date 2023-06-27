@@ -1,0 +1,28 @@
+<section class="featured-section px-4 pb-3 ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center mt-2">
+        <h2> Post Destacados</h2>
+        <p>Estos son los post más destacados</p>
+      </div>
+    </div>
+    <div class="row"  >
+      <div class="col-sm-12 col-md-6 col-lg-3 mt-3 mx-auto" *ngFor="let featuredPost of featuredArray" >
+        <app-post-card [postData] = "featuredPost"  ></app-post-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container mt-5 px-5">
+  <div class="col-12 text-center">
+    <h2>Últimos Posts</h2>
+    <p>Estos son los post más posteados de los últimos tiempos</p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 mt-3" *ngFor="let latestPost of latestArray" >
+      <app-post-card [postData] = "latestPost" ></app-post-card>
+    </div>
+  </div>
+</section>

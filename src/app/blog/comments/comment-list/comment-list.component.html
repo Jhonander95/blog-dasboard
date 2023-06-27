@@ -1,0 +1,21 @@
+<div class="card my-5 pb-5 shadow-effect">
+  <div class="card-body">
+    <h3 class="py-3">Comentarios ({{ comments.length }})</h3>
+    <h4 *ngIf="comments.length == 0" >No hay comentarios, sé el primero en dejar uno.</h4>
+
+    <ng-container *ngIf="comments.length > 0" >
+      <div class="comment-box mt-3" *ngFor="let comment of comments"  >
+        <h6 class="mb-0"> {{comment?.data?.name}} </h6>
+        <small> {{comment?.data?.createdAt.toMillis() | date }}  </small> 
+  
+        <div class="my-3">
+          {{comment?.data?.comment}}
+        </div>
+        <hr>
+  
+      </div>
+    </ng-container>
+
+    
+  </div>
+</div>

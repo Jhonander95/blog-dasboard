@@ -1,0 +1,37 @@
+<!-- <nav class=" navbar navbar-expand fixed-top ">
+  <div class="container">
+    <div class=" collapse navbar-collapse justify-content-center ">
+      <ul class=" navbar-nav " *ngFor="let cat of categories" >
+        <li class="nav-item ml-3 "> <a class="nav-link"  [routerLink]="['/category', cat.data?.category?.category, cat?.id ]" >{{cat.data?.category?.category}} </a> </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-md fixed-top">
+  <div class="container">
+    <div class="dropdown " *ngIf="esPantallaPequena" >
+      <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Categorias
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let cat of categories" >
+          <a class="dropdown-item" [routerLink]="['/category', cat.data?.category?.category, cat?.id]">{{cat.data?.category?.category}}</a>
+        </li>
+        <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-center" id="categories-menu">
+      <ul class="navbar-nav nav-tabs">
+        <li *ngFor="let cat of categories" class="nav-item ml-3">
+          <a class="nav-link" [routerLink]="['/category', cat.data?.category?.category, cat?.id]">{{cat.data?.category?.category}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+ 

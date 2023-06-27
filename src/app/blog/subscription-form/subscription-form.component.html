@@ -1,0 +1,81 @@
+<div class="card shadow-effect mx-auto">
+  <div class="card-body">
+    <div class=" text-center mt-3 mb-5 mt-5">
+      <h3>FORMULARIO DE SUBSCRIPCIÓN</h3>
+      <p class="mt-auto subs-text" >Suscribete para que te enteres de cada una de nuestra nuevas publicaciónes</p>
+
+      <div class="alert alert-warning" *ngIf="isEmailError" >
+        El email ya esta subscrito  
+      </div>
+
+      <div class="alert alert-success" *ngIf="isSubs" >
+        Gracias por subscribirte
+      </div>
+
+      <form 
+        class="row mb-5"
+        [formGroup]="form"
+        (ngSubmit)="onSubscription(form.value)"
+      >
+
+        <div class="form-group col-lg-5 col-md-12">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control    "
+            placeholder="Ricardo Jorge"
+          >            
+          <ng-container
+            *ngFor="
+                let validation of validationMessages
+                .name
+            "
+          >
+              <div
+                  class="form-text text-dark bg-theme "
+                  *ngIf="
+                      nameField?.hasError(validation.type) &&
+                      nameFieldDirty
+                  "
+              >
+                <h3>{{validation.message}}</h3>
+              </div>
+          </ng-container>                          
+        </div>
+        <div class="form-group col-lg-5 col-md-12">
+          <!-- <input type="email" placeholder="email@email.com" class="form-control shadow-effect"> -->
+          <input
+            type="text"
+            formControlName="email"
+            class="form-control    "
+            placeholder="pedropablo@gmail.com"
+          >
+          <ng-container
+              *ngFor="
+                  let validation of validationMessages
+                  .email
+              "
+          >
+              <div
+                  class="form-text text-dark bg-theme "
+                  *ngIf="
+                      emailField?.hasError(validation.type) &&
+                      emailFieldDirty
+                  "
+              >
+                <h3>{{validation.message}}</h3>
+              </div>
+          </ng-container>
+        </div>
+
+        <div class=" col-lg-2 col-md-12">
+          <button 
+            class="btn btn-warning btn-block btn-sub shadow-effect"
+            [disabled]="form.invalid"
+            type="submit" 
+          >SUBSCRIBIRME</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
